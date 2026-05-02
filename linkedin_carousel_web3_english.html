@@ -1,0 +1,207 @@
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@400;500&display=swap');
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  .carousel-wrap { font-family: 'DM Sans', sans-serif; padding: 1rem 0; display: flex; flex-direction: column; gap: 1.5rem; }
+  .controls { display: flex; align-items: center; justify-content: center; gap: 12px; }
+  .controls button { background: var(--color-background-primary); border: 0.5px solid var(--color-border-secondary); border-radius: var(--border-radius-md); padding: 6px 16px; font-size: 13px; cursor: pointer; color: var(--color-text-primary); font-family: 'DM Sans', sans-serif; }
+  .controls button:hover { background: var(--color-background-secondary); }
+  .controls button:disabled { opacity: 0.3; cursor: default; }
+  .slide-counter { font-size: 13px; color: var(--color-text-secondary); min-width: 60px; text-align: center; }
+  .slide-viewport { width: 100%; aspect-ratio: 1 / 1; max-width: 540px; margin: 0 auto; position: relative; border-radius: var(--border-radius-lg); overflow: hidden; }
+  .slide { position: absolute; inset: 0; display: none; flex-direction: column; justify-content: space-between; padding: 36px; }
+  .slide.active { display: flex; }
+  .s1 { background: #0a0f1e; color: #fff; }
+  .s1 .tag { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #6ee7b7; font-weight: 500; }
+  .s1 h1 { font-family: 'DM Serif Display', serif; font-size: 36px; line-height: 1.15; color: #fff; margin-top: 20px; }
+  .s1 h1 span { color: #6ee7b7; }
+  .s1 .sub { font-size: 14px; color: #94a3b8; margin-top: 16px; line-height: 1.6; }
+  .s1 .footer { font-size: 12px; color: #475569; }
+  .s1 .dot { width: 6px; height: 6px; border-radius: 50%; background: #6ee7b7; display: inline-block; margin-right: 8px; }
+  .s-dark { background: #0a0f1e; color: #fff; }
+  .slide-number { font-size: 11px; letter-spacing: 2px; text-transform: uppercase; color: #6ee7b7; font-weight: 500; }
+  .slide-title { font-family: 'DM Serif Display', serif; font-size: 28px; line-height: 1.2; color: #fff; margin-top: 10px; }
+  .slide-title span { color: #6ee7b7; }
+  .slide-body { font-size: 14px; color: #cbd5e1; line-height: 1.7; flex: 1; margin-top: 20px; }
+  .pill-row { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 16px; }
+  .pill { background: #1e293b; border: 0.5px solid #334155; border-radius: 999px; padding: 5px 14px; font-size: 12px; color: #94a3b8; }
+  .pill.accent { background: #064e3b; border-color: #065f46; color: #6ee7b7; }
+  .big-stat { font-family: 'DM Serif Display', serif; font-size: 52px; color: #6ee7b7; line-height: 1; margin: 16px 0 4px; }
+  .stat-label { font-size: 13px; color: #64748b; }
+  .slide-footer { font-size: 11px; color: #334155; margin-top: 16px; }
+  .row-cards { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+  .row-card { background: #111827; border: 0.5px solid #1e293b; border-radius: var(--border-radius-md); padding: 10px 14px; display: flex; align-items: flex-start; gap: 10px; }
+  .rc-icon { font-size: 16px; margin-top: 1px; flex-shrink: 0; }
+  .rc-text { font-size: 13px; color: #cbd5e1; line-height: 1.5; }
+  .rc-text strong { color: #f1f5f9; font-weight: 500; }
+  .cta-box { background: #064e3b; border: 0.5px solid #065f46; border-radius: var(--border-radius-md); padding: 16px 20px; margin-top: 20px; font-size: 14px; color: #6ee7b7; text-align: center; line-height: 1.6; }
+  .flow-steps { display: flex; flex-direction: column; gap: 0; margin-top: 16px; }
+  .flow-step { display: flex; align-items: flex-start; gap: 12px; padding: 10px 0; border-bottom: 0.5px solid #1e293b; }
+  .flow-step:last-child { border-bottom: none; }
+  .step-num { width: 22px; height: 22px; border-radius: 50%; background: #064e3b; border: 0.5px solid #065f46; font-size: 11px; color: #6ee7b7; font-weight: 500; display: flex; align-items: center; justify-content: center; flex-shrink: 0; margin-top: 1px; }
+  .step-text { font-size: 13px; color: #cbd5e1; line-height: 1.5; }
+  .step-text strong { color: #f1f5f9; font-weight: 500; }
+  .s8 { background: #064e3b; }
+  .s8 .slide-title { color: #fff; }
+  .s8 .slide-body { color: #a7f3d0; }
+  .s8 .slide-number { color: #34d399; }
+  .s8 .slide-footer { color: #065f46; }
+  .copy-hint { text-align: center; font-size: 12px; color: var(--color-text-secondary); }
+</style>
+
+<div class="carousel-wrap">
+  <h2 class="sr-only">LinkedIn carousel about blockchain manufacturing finance</h2>
+  <div class="slide-viewport">
+
+    <!-- Slide 1 -->
+    <div class="slide s1 active" data-index="0">
+      <div>
+        <div class="tag"><span class="dot"></span>Web3 × Private Credit × RWA</div>
+        <h1>How blockchain can <span>finance real-world</span> industry</h1>
+        <p class="sub">The case of a European electric motorcycle company expanding to the US — and how I designed the financial solution.</p>
+      </div>
+      <div class="footer">Swipe to discover →</div>
+    </div>
+
+    <!-- Slide 2 -->
+    <div class="slide s-dark" data-index="1">
+      <div class="slide-number">01 / The real problem</div>
+      <div class="slide-title">US tariffs.<br>Now <span>what?</span></div>
+      <div class="slide-body">
+        A European electric motorcycle company wants to sell in the US but tariffs block the path. The solution: the <strong style="color:#f1f5f9">CKD model</strong>.
+        <div class="row-cards">
+          <div class="row-card"><div class="rc-icon">🇪🇺</div><div class="rc-text"><strong>Europe</strong> produces batteries and components</div></div>
+          <div class="row-card"><div class="rc-icon">🇲🇽</div><div class="rc-text">Shipped disassembled to <strong>Mexico</strong>, assembled locally</div></div>
+          <div class="row-card"><div class="rc-icon">🇺🇸</div><div class="rc-text">Sold in the <strong>US</strong> tariff-free under USMCA</div></div>
+        </div>
+      </div>
+      <div class="slide-footer">Financing Manufacturing via Blockchain</div>
+    </div>
+
+    <!-- Slide 3 -->
+    <div class="slide s-dark" data-index="2" style="justify-content: flex-start;">
+      <div class="slide-number">02 / The hidden problem</div>
+      <div class="slide-title">This is not a<br><span>funding</span> problem</div>
+      <div class="slide-body" style="display: flex; flex-direction: column;">
+        <div>
+          The CKD model extends the cash conversion cycle by ~2 months. Capital gets locked between production and distributor payment.
+          <div class="big-stat">+2</div>
+          <div class="stat-label">months of immobilized capital</div>
+          <div class="pill-row">
+            <div class="pill">production in Europe</div>
+            <div class="pill">shipment to Mexico</div>
+            <div class="pill">assembly</div>
+            <div class="pill">US distribution</div>
+            <div class="pill accent">delayed collection</div>
+          </div>
+        </div>
+        <div style="flex: 1; display: flex; align-items: center;">
+          <div style="font-family: 'DM Serif Display', serif; font-size: 22px; line-height: 1.2; white-space: nowrap; color: #fff;">
+            It's a <span style="color: #6ee7b7;">capital efficiency</span> problem
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">Financing Manufacturing via Blockchain</div>
+    </div>
+
+    <!-- Slide 4 -->
+    <div class="slide s-dark" data-index="3">
+      <div class="slide-number">03 / Banks are not the answer</div>
+      <div class="slide-title">Traditional finance<br><span>falls short</span></div>
+      <div class="slide-body">
+        Trade finance and revolving credit exist — but they're not built for dynamic, cross-border operations.
+        <div class="row-cards">
+          <div class="row-card"><div class="rc-text" style="color:#f87171">✗ &nbsp;<strong style="color:#fca5a5">Slow approval</strong> cycles</div></div>
+          <div class="row-card"><div class="rc-text" style="color:#f87171">✗ &nbsp;<strong style="color:#fca5a5">Rigid structures</strong> with no flexibility</div></div>
+          <div class="row-card"><div class="rc-text" style="color:#f87171">✗ &nbsp;<strong style="color:#fca5a5">Potential strategic</strong> constraints</div></div>
+          <div class="row-card" style="border-color:#065f46"><div class="rc-text" style="color:#6ee7b7">✓ &nbsp;<strong style="color:#a7f3d0">Complementary solution</strong>, not a replacement</div></div>
+        </div>
+      </div>
+      <div class="slide-footer">Financing Manufacturing via Blockchain</div>
+    </div>
+
+    <!-- Slide 5 -->
+    <div class="slide s-dark" data-index="4">
+      <div class="slide-number">04 / The solution</div>
+      <div class="slide-title">On-demand <span>tokenized</span><br>working capital</div>
+      <div class="slide-body">
+        A €5M private credit pool, structured on blockchain as an infrastructure layer — not a speculative product.
+        <div class="flow-steps">
+          <div class="flow-step"><div class="step-num">1</div><div class="step-text"><strong>Automatic drawdown</strong> triggered by verified production, Bill of Lading, or export invoice</div></div>
+          <div class="flow-step"><div class="step-num">2</div><div class="step-text"><strong>Programmatic repayment</strong> upon confirmed US distributor payment</div></div>
+          <div class="flow-step"><div class="step-num">3</div><div class="step-text"><strong>Private investors</strong> participate as lenders with transferable on-chain positions</div></div>
+        </div>
+      </div>
+      <div class="slide-footer">Financing Manufacturing via Blockchain</div>
+    </div>
+
+    <!-- Slide 6 -->
+    <div class="slide s-dark" data-index="5">
+      <div class="slide-number">05 / The role of blockchain</div>
+      <div class="slide-title">Blockchain as<br><span>infrastructure</span></div>
+      <div class="slide-body">
+        The technology is not the product. It's the rail that makes it possible.
+        <div class="row-cards">
+          <div class="row-card"><div class="rc-icon">⚡</div><div class="rc-text"><strong>Fast execution</strong> without slow intermediaries</div></div>
+          <div class="row-card"><div class="rc-icon">⚙️</div><div class="rc-text"><strong>Programmable drawdowns</strong> tied to real-world events (RWA)</div></div>
+          <div class="row-card"><div class="rc-icon">🔍</div><div class="rc-text"><strong>Transparency</strong> for investors in a permissioned environment</div></div>
+          <div class="row-card"><div class="rc-icon">🔄</div><div class="rc-text"><strong>Controlled transferability</strong> of positions</div></div>
+        </div>
+      </div>
+      <div class="slide-footer">Financing Manufacturing via Blockchain</div>
+    </div>
+
+    <!-- Slide 7 -->
+    <div class="slide s-dark" data-index="6">
+      <div class="slide-number">06 / Risk & return</div>
+      <div class="slide-title">Pricing based on<br><span>real assets</span></div>
+      <div class="slide-body">
+        Each tranche has its own risk/return profile based on the underlying asset.
+        <div class="row-cards">
+          <div class="row-card" style="border-left: 3px solid #34d399; border-radius: 0 8px 8px 0;"><div class="rc-text"><strong style="color:#34d399">Low risk</strong> — Receivables → lower yield</div></div>
+          <div class="row-card" style="border-left: 3px solid #fbbf24; border-radius: 0 8px 8px 0;"><div class="rc-text"><strong style="color:#fbbf24">Medium risk</strong> — Finished goods → medium yield</div></div>
+          <div class="row-card" style="border-left: 3px solid #f87171; border-radius: 0 8px 8px 0;"><div class="rc-text"><strong style="color:#f87171">Higher risk</strong> — Inventory in transit → higher yield</div></div>
+        </div>
+        <p style="font-size:13px; color:#64748b; margin-top:14px;">Return is aligned with real asset risk — not token speculation.</p>
+      </div>
+      <div class="slide-footer">Financing Manufacturing via Blockchain</div>
+    </div>
+
+    <!-- Slide 8 -->
+    <div class="slide s8" data-index="7">
+      <div class="slide-number">07 / Takeaway</div>
+      <div class="slide-title">Web3 is not just<br>speculative DeFi</div>
+      <div class="slide-body">
+        There's a massive opportunity at the intersection of private credit, real-world assets, and blockchain as infrastructure.<br><br>
+        I've been building in this space. If you work in finance, manufacturing, or Web3 and this resonates — let's connect.
+      </div>
+      <div class="cta-box">
+        Building in RWA, private credit, or cross-border fintech?<br>
+        <strong style="color:#a7f3d0">Connect with me on LinkedIn 👇</strong>
+      </div>
+      <div class="slide-footer">Financing Manufacturing via Blockchain</div>
+    </div>
+
+  </div>
+
+  <div class="controls">
+    <button id="prev-btn" onclick="changeSlide(-1)" disabled>← Previous</button>
+    <span class="slide-counter" id="counter">1 / 8</span>
+    <button id="next-btn" onclick="changeSlide(1)">Next →</button>
+  </div>
+  <p class="copy-hint">Copy the text from each slide for your LinkedIn carousel</p>
+</div>
+
+<script>
+  let current = 0;
+  const slides = document.querySelectorAll('.slide');
+  const total = slides.length;
+  function changeSlide(dir) {
+    slides[current].classList.remove('active');
+    current = Math.max(0, Math.min(total - 1, current + dir));
+    slides[current].classList.add('active');
+    document.getElementById('counter').textContent = (current + 1) + ' / ' + total;
+    document.getElementById('prev-btn').disabled = current === 0;
+    document.getElementById('next-btn').disabled = current === total - 1;
+  }
+</script>
